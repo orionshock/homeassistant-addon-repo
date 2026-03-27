@@ -35,7 +35,7 @@ All data — the SQLite database and uploaded files — is stored in the add-on'
 
 ## Ingress
 
-The add-on supports Home Assistant Ingress, so you can open it directly from the **Web UI** tab without exposing any additional ports. Port `8000` is also mapped if direct access is preferred.
+The add-on supports Home Assistant Ingress, so you can open it directly from the **Web UI** tab without exposing any additional ports.
 
 ## Support
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+set -euo pipefail
 
 OPTIONS_FILE=/data/options.json
 
@@ -24,8 +24,12 @@ export APP_DB_PATH=/data/logbook.db
 # which tells FastAPI where the app is mounted so links and redirects work.
 export APP_ROOT_PATH="${INGRESS_PATH:-}"
 
-mkdir -p /data/uploads
+mkdir -p "${APP_UPLOADS_DIR}"
 
 cd /app
 
-exec uvicorn app.main:app --host 0.0.0.0 --port 8000
+exec uvicorn app.main:app \
+    --host 0.0.0.0 \
+    --port 8000 \
+    --proxy-headers \
+    --forwarded-allow-ips="*"
