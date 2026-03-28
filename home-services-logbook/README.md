@@ -40,7 +40,7 @@ By default this resolves to the add-on's persistent `/data` volume, so data surv
 
 ## Ingress
 
-The add-on is intended to run through Home Assistant Ingress. Root path and user identity are read from trusted upstream headers, so you can open it directly from the **Web UI** tab without exposing any additional ports.
+The add-on is intended to run through Home Assistant Ingress.
 
 ## Support
 
