@@ -26,16 +26,21 @@ Think of it as the digital version of the spiral-bound notebook next to the phon
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `trust_upstream_auth` | `bool` | `false` | Trust an upstream reverse-proxy header for user identity. Enable only when the app is behind a trusted proxy that sets the actor header. |
-| `allow_actor_override` | `bool` | `true` | Allow the active user identity to be overridden via a browser cookie (useful for shared households). |
+| `allow_session_user_override` | `bool` | `false` | Allow the active user identity to be overridden via a browser cookie (useful for shared households). |
+| `data_dir` | `str?` | `"/data"` | Base directory used for persistent app storage. If empty or unset, `/data` is used. |
 
 ## Data Storage
 
-All data — the SQLite database and uploaded files — is stored in the add-on's persistent `/data` volume and survives restarts and upgrades.
+Storage is derived from `data_dir`:
+
+- Database: `${data_dir}/logbook.db`
+- Uploads: `${data_dir}/uploads`
+
+By default this resolves to the add-on's persistent `/data` volume, so data survives restarts and upgrades.
 
 ## Ingress
 
-The add-on supports Home Assistant Ingress, so you can open it directly from the **Web UI** tab without exposing any additional ports.
+The add-on is intended to run through Home Assistant Ingress. Root path and user identity are read from trusted upstream headers, so you can open it directly from the **Web UI** tab without exposing any additional ports.
 
 ## Support
 
